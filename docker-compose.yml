@@ -6,7 +6,7 @@ services:
       - "7474:7474" # Neo4j Browser UI
       - "7687:7687" # Bolt protocol
     environment:
-      - NEO4J_AUTH=neo4j/aegis_password_123
+      - NEO4J_AUTH=${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:-aegis_password_123}
       - NEO4J_PLUGINS=["apoc"]
     volumes:
       - neo4j_data:/data
@@ -27,12 +27,12 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - API_HOST=0.0.0.0
-      - API_PORT=8000
-      - ENVIRONMENT=development
-      - NEO4J_URI=bolt://neo4j:7687
-      - NEO4J_USER=neo4j
-      - NEO4J_PASSWORD=aegis_password_123
+      - API_HOST=${API_HOST:-0.0.0.0}
+      - API_PORT=${API_PORT:-8000}
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - NEO4J_URI=${NEO4J_URI:-bolt://neo4j:7687}
+      - NEO4J_USER=${NEO4J_USER:-neo4j}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD:-aegis_password_123}
     volumes:
       - ./src:/app/src # Mount source for hot-reload
       - ./data:/app/data # Shared data directory
