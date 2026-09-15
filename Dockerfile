@@ -1,18 +1,15 @@
 # Use Python 3.13 slim image
-FROM python:3.13-slim
+FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
-# Copy dependency file first (for caching)
-COPY pyproject.toml .
-# Install the project dependencies
-RUN pip install --no-cache-dir .
-# Copy the rest of the source code
+# Copy the entire project first
 COPY . .
-# Install the project itself in editable mode
+
+# Install the project and its dependencies in editable mode
 RUN pip install --no-cache-dir -e .
 # Expose the API port
 EXPOSE 8000
