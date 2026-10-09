@@ -31,3 +31,6 @@ data/uploads/*
 data/extracted/*
 data/faiss_index/*
 !data/**/.gitkeep
+# Test caches
+.pytest_cache/
+
