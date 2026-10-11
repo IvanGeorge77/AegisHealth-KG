@@ -39,6 +39,11 @@
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
+  /* The landing page uses a tighter grotesk for oversized display type. It
+     shares the page with the product, which keeps its editorial serif/sans
+     pairing. */
+  --font-display: "Inter Tight", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
   /* Body copy sits at 15px with a 1.6 line-height. Metadata never drops below
      14px except for short all-caps labels, which are set at 11.5px with wide
      tracking and full-contrast colour so they stay legible. */
@@ -69,6 +74,8 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
@@ -91,10 +98,26 @@
     color: var(--color-ink);
   }
 
+  /* The landing surface overrides this — its display type is a tight grotesk,
+     not the product's editorial serif. Needed as an explicit rule because the
+     element selector above beats an inherited font-family. */
+  .landing-surface h1,
+  .landing-surface h2 {
+    font-family: var(--font-display);
+    font-weight: 350;
+    letter-spacing: -0.045em;
+    color: #ffffff;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-forest);
     outline-offset: 2px;
     border-radius: 1px;
+  }
+
+  /* The landing page sits on near-black and supplies its own focus colour. */
+  .landing-surface :focus-visible {
+    outline-color: #7fe3d0;
   }
 
   /* Reduced motion: honour the OS setting everywhere. */
@@ -216,5 +239,18 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* Landing page entrance — fade and rise. Opted out entirely under
+   prefers-reduced-motion (see the reduced-motion block above). */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }

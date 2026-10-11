@@ -206,7 +206,7 @@ export function AppealsPage() {
 /* ── Not found ───────────────────────────────────────────────────────────── */
 
 export function NotFoundPage() {
-  usePageMeta({ title: "Not found", crumbs: [{ label: "Overview", to: "/" }] });
+  usePageMeta({ title: "Not found", crumbs: [{ label: "Overview", to: "/explore" }] });
 
   return (
     <PageBody width="reading">
@@ -217,7 +217,7 @@ export function NotFoundPage() {
       />
       <p className={cn("text-caption text-slate")}>
         <Link
-          to="/"
+          to="/explore"
           className="font-medium text-forest underline underline-offset-4 hover:text-forest-deep"
         >
           Return to the overview

@@ -37,7 +37,7 @@ interface NavItem {
 }
 
 export const PRIMARY_NAV: NavItem[] = [
-  { to: "/", label: "Overview", icon: LayoutList, end: true },
+  { to: "/explore", label: "Overview", icon: LayoutList },
   { to: "/cases", label: "Cases", icon: FolderOpen },
   { to: "/evidence", label: "Evidence Library", icon: BookOpen, phase: "P7" },
   { to: "/policies", label: "Payer Policies", icon: FileStack, phase: "P6" },

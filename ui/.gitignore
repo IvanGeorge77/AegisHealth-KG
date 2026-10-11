@@ -6,3 +6,7 @@ dist-ssr
 .env.local
 .DS_Store
 .vite
+
+# TypeScript incremental build cache. Machine-specific and regenerated on
+# every tsc run — it should never be tracked.
+*.tsbuildinfo
